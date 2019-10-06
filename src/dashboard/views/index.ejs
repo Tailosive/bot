@@ -1,0 +1,10 @@
+<%- include('blocks/header', {path, user, page: 'index', meta: {}}) %>
+
+<section class="welcome-section" style="margin-top: 10%;">
+  <div id="text-group">
+    <h1 class="display-1 font-weight-bold mb-0"><% if (!user) { %>Login<% } else { %>Welcome, <%= user.username %><% } %></h1>
+    <h3 class="h3 text-muted mt-0"><% if (user) { %>Hope your having a great day! <a href="/cases">Check cases <i class="fas fa-arrow-right"></i></a><% } else { %>You must login to use this website <a href="/cases">Login <i class="fas fa-arrow-right"></i></a><% } %></h3>
+  </div>
+</section>
+
+<% include ./blocks/footer %>

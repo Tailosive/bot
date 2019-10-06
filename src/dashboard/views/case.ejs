@@ -1,0 +1,53 @@
+<%- include('blocks/header', {path, user, page: 'index', meta: {}}) %>
+
+<section class="welcome-section" style="margin-top: 10%;">
+  <div id="text-group">
+    <h1 class="display-1 font-weight-bold mb-0">Case #<%= c.caseID %></h1>
+    <h3 class="h3 text-muted mt-0">Details of case #<%= c.caseID %></h3>
+  </div>
+</section>
+
+
+<section class="cases-section pb-3" style="margin-top: 10%;">
+	<% if (!c) { %>
+		 <div class="alert alert-danger" role="alert">
+	    Wow! No case found....
+	  </div>
+	<% } else { %>
+		<% const target = bot.users.get(c.userID) %>
+		<% const mod = bot.users.get(c.moderatorID) %>
+		<% const date = new Date(c.date) %>
+		<% const year = date.getUTCFullYear() %>
+		<% const month = date.getUTCMonth() + 1 %>
+		<% const day = date.getUTCDate() %>
+		<% const hours = date.getUTCHours() %>
+		<% const min = date.getUTCMinutes() %>
+		<div class="card shadow-lg card-white border-0 mb-3">
+	    <div class="card-body">
+				<p class="card-text">
+					<strong>User:</strong> <% if (target && target.username) { %> <%= target.username || 'unknown' %> | <%= c.userID %> <% } else { %> Unknown | <%= c.userID %> <% } %>
+					<br>
+					<strong>Moderator:</strong> <% if (mod && mod.username) { %> <%= mod.username || 'unknown' %> | <%= c.moderatorID %> <% } else { %> Unknown | <%= c.moderatorID %> <% } %>
+					<br>
+					<br>
+					<strong><% if (!c.newReason) { %>Reason:<% } else { %> Old Reason:<% } %></strong> <%= c.reason %>
+					<% if (c.newReason) { %><br><strong>New Reason:</strong> <%= c.newReason %> <% } %>
+					<br>
+					<strong>Status:</strong> <% if (c.status && c.status === 'active') { %> ✅ <% } else { %> ❌ <% } %>
+					<br>
+					<% if (c.duration) { %> <strong>Duration:</strong> <%= c.duration %> <br><% } %>
+					<br>
+          <strong>Date:</strong> <%= date.toLocaleDateString() %> <%= date.toLocaleTimeString() %>
+				</p>
+				<% if (admin) { %>
+					<a href="/case/<%= c.caseID %>/revoke" class="btn btn-danger">Revoke</a>
+					<% if (c.status === 'active') { %> <a href="/case/<%= c.caseID %>/inactive" class="btn btn-warning">Set Inactive</a> <% } %>
+				<% } %>
+	    </div>
+		</div>
+	<% } %>
+</section>
+
+
+
+<% include ./blocks/footer %>

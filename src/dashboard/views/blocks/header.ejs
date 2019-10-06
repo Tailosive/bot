@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" class="h-100">
+  <head>
+    <!-- Required meta tags -->
+    <link rel="shortcut icon" type="image/x-icon" href="https://tailosive.net/public/favicon.ico" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="title" content="<% if (meta && meta.title) { %> <%= meta.title %> <% } else { %>Tailosive Network<% } %>">
+    <meta name="description" content="<% if (meta && meta.desc) { %> <%= meta.desc %> <% } else { %>A hub for the Tailosive Network on YouTube. <% } %>">
+    <meta name="image" content="https://tailosive.net/public/tailosiveimage.png">
+    <meta property="og:image" content="https://tailosive.net/public/tailosiveimage.png">
+    <meta property="og:site_name" content="<% if (meta && meta.title) { %> <%= meta.title %> <% } else { %>Tailosive Network<% } %>"/>
+    <meta property="og:keywords" content="Tailosive, tailosive network, tech, YouTube, twitter, Drew, Youtuber, technology, apple, apple sheep"/>
+    <meta name="twitter:title" content="<% if (meta && meta.title) { %> <%= meta.title %> <% } else { %>Tailosive Network<% } %>">
+    <meta name="twitter:description" content="<% if (meta && meta.desc) { %> <%= meta.desc %> <% } else { %>A hub for the Tailosive Network on YouTube. <% } %>">
+    <meta name="twitter:image" content="/public/tailosiveimage.png">
+
+    <!--   PWA Support iOS  -->
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <!--   CSS   -->
+    <link rel="stylesheet" href="<%= locals.getVersionedPath('/css/main.css') %>">
+
+    <title><% if (meta && meta.title) { %> <%= meta.title %> <% } else { %> Tailosive Network <% } %></title>
+  </head>
+
+  <body class="d-flex flex-column h-100" id="body">
+    <div class="container h-100" style="margin-bottom: 50px">
+    <%- include('./navbar', { path, user, page }) %>
