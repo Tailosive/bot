@@ -14,7 +14,7 @@ const config = {
     log_channel: '485931120442081291',
     message_channel: '531362264792563722',
     member_channel: '583032850505269268',
-    nickname_channel: '583032850505269268',
+    nickname_channel: '644989565287006228',
     bot_channel: '548956714217766912',
     notification_channel: '501504168754675745'
   },

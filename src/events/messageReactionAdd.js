@@ -19,11 +19,9 @@ class MessageReactionAddListener extends Event {
     if (emoji.name === '✅' && moderator.roles.includes(this.client.config.roles.mod_role)) {
       const find = await this.client.nicknames.get(msg.channel.guild.id, msg.id)
       if (!find) return
-      const edit = await this.client.nicknames.delete(msg.channel.guild.id, msg.id)
-      if (!edit) return
       const member = await msg.channel.guild.members.get(find.userID)
       if (!member) return
-      await member.edit({ nickname: find.nickname }, `Nickname Approved By: ${member.user.mention}`)
+      await member.edit({ nick: find.nickname }, `Nickname Approved By: ${member.user.username}`)
       const logembed = this.client.embed()
         .title('**Nickname Request Approved**')
         .field('Member', `${member.user.mention} \`${member.user.username}#${member.user.discriminator}\``, true)
@@ -34,6 +32,8 @@ class MessageReactionAddListener extends Event {
         .color(0x4341f4)
         .footer(`ID: ${member.user.id} | ${this.client.config.embed.text}`, this.client.config.embed.icon)
       await msg.channel.createMessage({ embed: logembed })
+      const edit = await this.client.nicknames.delete(msg.channel.guild.id, msg.id)
+      if (!edit) return
       return msg.delete()
     } else if (emoji.name === '❌' && moderator.roles.includes(this.client.config.roles.mod_role)) {
       const find = await this.client.nicknames.get(msg.channel.guild.id, msg.id)
