@@ -87,7 +87,7 @@ class TailosiveFunctions {
   getUserFromMention (mention) {
     const matches = mention.match(/^<@!?(\d+)>$/)
     if (!matches) {
-      const isID = isSnowflake(mention) || undefined
+      const isID = this.isSnowflake(mention) || undefined
       if (isID) return this.client.users.get(mention)
       else return undefined
     }
