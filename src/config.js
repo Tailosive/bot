@@ -23,8 +23,8 @@ const config = {
     text: 'Tailosive',
     color: 0xA660E3
   },
-  url: 'http://mods.tailosive.net/',
-  callbackURL: 'http://mods.tailosive.net/discord/callback'
+  url: 'https://mods.tailosive.net/',
+  callbackURL: 'https://mods.tailosive.net/discord/callback'
 }
 
 module.exports = config
