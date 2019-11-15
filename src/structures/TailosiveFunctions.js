@@ -20,7 +20,6 @@ class TailosiveFunctions {
     if (isNaN(snowflake) || !/[0-9]{15,25}/.test(snowflake)) {
       return
     }
-
     const timestamp = this.getTime(snowflake)
     if (timestamp < (Date.now() + 60000)) {
       return timestamp
@@ -75,7 +74,7 @@ class TailosiveFunctions {
     const guild = this.client.guilds.get(msg.guild.id)
     const member = guild.members.get(msg.author.id)
     if (member.permission.has('administrator')) return null
-    else if (member.roles.some(r => r.id === this.client.config.roles.mod_role)) return null
+    else if (member.roles.includes(this.client.config.roles.mod_role)) return null
     else return 'Moderator Role'
   }
 
