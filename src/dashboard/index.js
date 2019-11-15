@@ -59,6 +59,7 @@ module.exports = (client) => {
     saveUninitialized: true,
     cookie: { secure: process.env.NODE_ENV !== 'development' ? true : false, maxAge: 6.048e+8 } // eslint-disable-line
   })
+  app.set('trust proxy', 1)
   app.use(sessionOption)
 
   app.use(passport.initialize())
