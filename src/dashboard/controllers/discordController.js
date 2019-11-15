@@ -23,9 +23,9 @@ exports.callback = async (req, res) => {
     return res.redirect('/')
   }
   if (req.session.backURL) {
-    const backURL = req.session.backURL === '/' ? '/cases' : req.session.backURL
+    const backURL = req.session.backURL
     req.session.backURL = null
-    return res.redirect(backURL)
+    return res.redirect(backURL === '/' ? '/cases' : backURL)
   } else {
     return res.redirect('/cases')
   }
@@ -39,6 +39,7 @@ exports.logout = (req, res) => {
 }
 
 exports.verify = (req, res, next) => {
-  if (req.user) return next()
+  if (req.isAuthenticated()) return next()
+  req.session.backURL = req.url
   return res.redirect('/discord/login')
 }
