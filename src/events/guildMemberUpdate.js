@@ -53,7 +53,7 @@ class GuildMemberUpdateListener extends Event {
           })
         }
       } else if (oldMember.roles.length < member.roles.length) {
-        const dif = member.roles.filter(r => !oldMember.roles.has(r.id)).first()
+        const dif = member.roles.filter(r => !oldMember.roles.includes(r.id)).first()
         if (!dif) return
         if (this.client.config.roles.donator_roles.includes(dif.id)) {
           await member.addRole(this.client.config.roles.donator_role)
