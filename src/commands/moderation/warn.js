@@ -24,7 +24,7 @@ class Warn extends Command {
     if (!member) return msg.embed(`${msg.author.mention}, Please give me a member to warn.`)
     if (!reason) return msg.embed(`${msg.author.mention}, Please give me a reason for the warning.`)
     else if (member.id === msg.member.id && process.env.NODE_ENV === 'production') return msg.embed(`${msg.author.mention}, You can't warn yourself.`)
-    else if (member.roles.some(r => r.id === this.client.config.modrole)) return msg.embed(`${msg.author.mention}, Unable to warn a moderator.`)
+    else if (member.roles.includes(this.client.config.modrole)) return msg.embed(`${msg.author.mention}, Unable to warn a moderator.`)
     else if (member.bot) return msg.embed(`${msg.author.mention}, Can't warn bots... They aren't humans :(`)
     else {
       const submitCase = await this.client.cases.create(msg.guild.id, 'warn', member.id, msg.author.id, reason || 'No reason was given', new Date(), 'active')
