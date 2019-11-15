@@ -3,6 +3,7 @@
 const mongoose = require('mongoose')
 const CaseModel = require('../models/CaseModel')
 const NicknameModel = require('../models/NicknameModel')
+const ModModel = require('../models/ModModel')
 
 class CasesDatabase {
   constructor () {
@@ -33,7 +34,7 @@ class CasesDatabase {
   async create (guildID, type, userID, moderatorID, reason, date, status, duration) {
     const searchDB = await this.cases.find({
       guildID: guildID
-    })
+    }).catch(e => console.log(e))
     if (!searchDB || searchDB.length <= 0) { // eslint-disable-line
       const commitDB = await this.cases.create({
         guildID: guildID,
@@ -45,7 +46,7 @@ class CasesDatabase {
         status: status,
         type: type,
         duration: duration || null
-      })
+      }).catch(e => console.log(e))
       console.log(searchDB)
       if (!commitDB) return undefined
       return 1
@@ -68,7 +69,7 @@ class CasesDatabase {
           status: status,
           type: type,
           duration: duration || null
-        })
+        }).catch(e => console.log(e))
         if (!commitDB) return undefined
         return num
       } else {
@@ -146,7 +147,42 @@ class NicknameDatabase {
   }
 }
 
+class ModDatabase {
+  constructor () {
+    this.mods = mongoose.model('mods', ModModel)
+  }
+
+  async get (guildID, userID) {
+    if (!guildID) return undefined
+    const searchDB = await this.mods.findOne({
+      guildID: guildID,
+      moderatorID: userID
+    })
+    return searchDB || undefined
+  }
+
+  async add (guildID, userID) {
+    if (!guildID || !userID) return undefined
+    const commitDB = await this.mods.create({
+      guildID: guildID,
+      moderatorID: userID
+    })
+    if (!commitDB) return
+    return commitDB
+  }
+
+  async remove (guildID, userID) {
+    if (!guildID || !userID) return undefined
+    const commitDB = await this.mods.findOneAndDelete({
+      guildID: guildID,
+      moderatorID: userID
+    })
+    return commitDB || undefined
+  }
+}
+
 module.exports = {
   CasesDatabase,
-  NicknameDatabase
+  NicknameDatabase,
+  ModDatabase
 }

@@ -1,22 +1,22 @@
 const config = {
   prefix: '!',
   owner: '392347814413467655',
-  main_guild: '482041136500834304',
+  main_guild: '482026415219408907',
   roles: {
-    mod_role: '624677745569431553',
-    mute_role: '624677795150299137',
-    trusted_role: '624677870337261568',
-    donator_role: '624677915782807572',
+    mod_role: '485695273482452996',
+    mute_role: '486046837762031626',
+    trusted_role: '625156977412014090',
+    donator_role: '579120451079372800',
     // tech, patreon, talks, tech yt, gaming, gaming yt
-    donator_roles: ['624677988994252810']
+    donator_roles: ['488501367812653067', '485687224445173762', '506263722512351252', '488496129579679744', '485712426415947776', '488495733004304394']
   },
   channels: {
-    log_channel: '624677386612637713',
-    message_channel: '624677332682276914',
-    member_channel: '624677348104601623',
-    nickname_channel: '624677367893327872',
-    bot_channel: '557312373283880975',
-    notification_channel: '557312373283880975'
+    log_channel: '485931120442081291',
+    message_channel: '531362264792563722',
+    member_channel: '583032850505269268',
+    nickname_channel: '583032850505269268',
+    bot_channel: '548956714217766912',
+    notification_channel: '501504168754675745'
   },
   embed: {
     icon: 'https://file.coffee/gp_6uQZnC.png',

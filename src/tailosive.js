@@ -28,6 +28,7 @@ eris.config = config
 eris.invites = []
 eris.cases = new Database.CasesDatabase()
 eris.nicknames = new Database.NicknameDatabase()
+eris.mods = new Database.ModDatabase()
 
 const client = new QuartzClient({
   owner: config.owner,

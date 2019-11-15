@@ -1,11 +1,30 @@
 'use strict'
 
 const schedule = require('node-schedule')
-const { isSnowflake } = require('quartz')
+const DISCORD_EPOCH = 1420070400000
 
 class TailosiveFunctions {
   constructor (client) {
     this.client = client
+  }
+
+  getTime (snowflake) {
+    return this.sinceEpoch(snowflake) + DISCORD_EPOCH
+  }
+
+  sinceEpoch (snowflake) {
+    return Math.floor((snowflake / 4194304))
+  }
+
+  isSnowflake (snowflake) {
+    if (isNaN(snowflake) || !/[0-9]{15,25}/.test(snowflake)) {
+      return
+    }
+
+    const timestamp = this.getTime(snowflake)
+    if (timestamp < (Date.now() + 60000)) {
+      return timestamp
+    }
   }
 
   async fetchLastAudit (guild, type) {
