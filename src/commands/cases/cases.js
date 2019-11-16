@@ -37,7 +37,7 @@ class CaseCommand extends Command {
         }
         return msg.channel.createMessage({ embed: embed })
       } else {
-        const cases = await this.client.cases.get(msg.guild.id)
+        const cases = await this.client.cases.get(msg.guild.id, null, member.id)
         if (!cases || cases <= 0) {
           msg.delete()
           return msg.embed(`${msg.author.mention}, I am surprised! ${member.mention} has 0 cases`)

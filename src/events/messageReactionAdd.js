@@ -21,7 +21,7 @@ class MessageReactionAddListener extends Event {
       if (!find) return
       const member = await msg.channel.guild.members.get(find.userID)
       if (!member) return
-      await member.edit({ nick: find.nickname }, `Nickname Approved By: ${member.user.username}`)
+      await member.edit({ nick: find.nickname }, `Nickname Approved By: ${moderator.user.username}`)
       const logembed = this.client.embed()
         .title('**Nickname Request Approved**')
         .field('Member', `${member.user.mention} \`${member.user.username}#${member.user.discriminator}\``, true)
