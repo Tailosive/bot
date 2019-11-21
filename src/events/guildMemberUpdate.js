@@ -39,18 +39,19 @@ class GuildMemberUpdateListener extends Event {
       return this.client.createMessage(this.client.config.channels.nickname_channel, { embed: embed })
     } else if (oldMember.roles.length !== member.roles.length) {
       if (oldMember.roles.length > member.roles.length) {
-        const dif = await oldMember.roles.filter(r => !member.roles.includes(r.id))[0]
+        const dif = await oldMember.roles.filter(r => !member.roles.includes(r))[0]
         if (!dif) return
-        if (this.client.config.roles.donator_roles.includes(dif.id)) {
+        if (this.client.config.roles.donator_roles.includes(dif)) {
+          let removeRole = true
           await member.roles.forEach(async role => {
-            if (role.id !== dif.id || !this.client.config.donator_roles.includes(role.id)) return undefined
-            else await member.addRemove(this.client.config.roles.donator_role)
+            if (this.client.config.roles.donator_roles.includes(role)) removeRole = false
           })
+          if (removeRole) await member.removeRole(this.client.config.roles.donator_role)
         }
       } else if (oldMember.roles.length < member.roles.length) {
-        const dif = member.roles.filter(r => !oldMember.roles.includes(r.id))[0]
+        const dif = member.roles.filter(r => !oldMember.roles.includes(r))[0]
         if (!dif) return
-        if (this.client.config.roles.donator_roles.includes(dif.id)) {
+        if (this.client.config.roles.donator_roles.includes(dif)) {
           await member.addRole(this.client.config.roles.donator_role)
         }
       }
