@@ -21,7 +21,7 @@ class Eval extends Command {
       const code = args.join(' ')
       let evaled = eval(code) // eslint-disable-line
       if (typeof evaled !== 'string') evaled = require('util').inspect(evaled)
-      msg.embed(`\`\`\`xl${clean(evaled)}\`\`\``)
+      msg.embed(`\`\`\`xl\n${clean(evaled)}\`\`\``)
     } catch (err) {
       msg.embed(`\`ERROR\` \`\`\`xl\n${clean(err)}\n\`\`\``)
     }
