@@ -28,15 +28,17 @@ class TailosiveFunctions {
 
   async fetchLastAudit (guild, type) {
     if (type) {
-      const item = await guild.getAuditLogs({ limit: 1, actionType: type }).catch(() => {
+      const item = await guild.getAuditLogs(1, null, type).catch((e) => {
+        console.log(e)
         return false
       })
-      return item
+      return item.entries[0]
     } else {
-      const item = await guild.getAuditLogs({ limit: 1 }).catch(() => {
+      const item = await guild.getAuditLogs(1, null, type).catch((e) => {
+        console.log(e)
         return false
       })
-      return item
+      return item.entries[0]
     }
   }
 

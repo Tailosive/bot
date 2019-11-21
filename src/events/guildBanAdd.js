@@ -11,8 +11,8 @@ class GuildBanAddListener extends Event {
     if (guild.id !== this.client.config.main_guild) return
     let reason = 'No reason given'
     let moderator = 'Unknown'
-    const audit = await this.client.functions.fetchLastAudit(guild, 'MEMBER_BAN_ADD')
-    if (!audit || audit.actionType !== 'MEMBER_BAN_ADD') return
+    const audit = await this.client.functions.fetchLastAudit(guild, 22)
+    if (!audit || audit.actionType !== 22) return
     const target = audit.target
     const member = audit.member
     if (audit.reason) reason = audit.reason

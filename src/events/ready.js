@@ -11,7 +11,7 @@ class Ready extends Event {
     const guild = this.client.guilds.get(this.client.config.main_guild)
     if (guild) {
       const invites = await guild.getInvites()
-      this.client.invites[guild.id] = invites
+      this.client.invites.set(guild.id, invites)
     }
     await this.client.functions.startMutes()
     return console.log('READY', `Bot: ${this.client.user.username}`)

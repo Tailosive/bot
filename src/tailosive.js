@@ -1,7 +1,7 @@
 require('dotenv').config()
 
 const { QuartzClient } = require('quartz')
-const { Client } = require('eris')
+const { Client, Collection } = require('eris')
 const mongoose = require('mongoose')
 const config = require('./config')
 const path = require('path')
@@ -25,7 +25,7 @@ const eris = new Client(process.env.TOKEN, {
 
 eris.functions = new Functions(eris)
 eris.config = config
-eris.invites = []
+eris.invites = new Collection()
 eris.cases = new Database.CasesDatabase()
 eris.nicknames = new Database.NicknameDatabase()
 eris.mods = new Database.ModDatabase()

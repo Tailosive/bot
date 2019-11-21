@@ -11,7 +11,9 @@ class GuildMemberRemoveListener extends Event {
 
   async run (guild, member) {
     if (guild.id !== this.client.config.main_guild) return
-    const ban = await this.client.getGuildBan(guild.id, member.id).catch(e => console.log(e))
+    const ban = await this.client.getGuildBan(guild.id, member.id).catch(() => {
+      return null
+    })
     if (ban) return
     const embed = this.client.embed()
       .title('**Member Left**')

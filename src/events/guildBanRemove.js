@@ -11,8 +11,8 @@ class GuildBanRemoveListener extends Event {
     if (guild.id !== this.client.config.main_guild) return
     let reason = 'No reason given'
     let moderator = 'Unknown'
-    const audit = await this.client.functions.fetchLastAudit(guild, 'MEMBER_BAN_REMOVE')
-    if (!audit || audit.actionType !== 'MEMBER_BAN_REMOVE') return
+    const audit = await this.client.functions.fetchLastAudit(guild, 23)
+    if (!audit || audit.actionType !== 23) return
     const target = audit.target
     const member = audit.member
     if (audit.reason) reason = audit.reason

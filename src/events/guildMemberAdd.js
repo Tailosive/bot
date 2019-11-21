@@ -22,10 +22,10 @@ class GuildMemberAddListener extends Event {
     try {
       await member.guild.getInvites().then(async guildInvites => {
         if (guildInvites) {
-          const ei = await this.client.invites[member.guild.id]
+          const ei = this.client.invites.get(guild.id)
           if (ei) {
-            this.client.invites[member.guild.id] = guildInvites
-            const invite = await guildInvites.find(i => ei.get(i.code).uses < i.uses)
+            this.client.invites.set(guild.id, guildInvites)
+            const invite = await guildInvites.find(i => ei.find(ic => ic.code === i.code).uses < i.uses)
             if (invite) inv = invite
           }
         }
