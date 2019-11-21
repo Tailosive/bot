@@ -31,12 +31,12 @@ class TailosiveFunctions {
       const item = await guild.getAuditLogs({ limit: 1, actionType: type }).catch(() => {
         return false
       })
-      return item.entries[0]
+      return item
     } else {
       const item = await guild.getAuditLogs({ limit: 1 }).catch(() => {
         return false
       })
-      return item.entries[0]
+      return item
     }
   }
 
