@@ -19,7 +19,7 @@ class Eval extends Command {
     if (msg.author.id !== '392347814413467655') return
     try {
       const code = args.join(' ')
-      let evaled = eval(code) // eslint-disable-line
+      let evaled = await eval(code) // eslint-disable-line
       if (typeof evaled !== 'string') evaled = require('util').inspect(evaled)
       msg.embed(`\`\`\`xl\n${clean(evaled)}\`\`\``)
     } catch (err) {
