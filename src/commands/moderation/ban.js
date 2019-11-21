@@ -29,7 +29,7 @@ class Ban extends Command {
     else {
       const submitCase = await this.client.cases.create(msg.guild.id, 'ban', member.id, msg.author.id, reason || 'No reason was given', new Date(), 'active')
       if (!submitCase) return msg.embed(`${msg.author.mention}, I was unable to process the ban... Please contact dev man!`)
-      if (reason !== 'DEV_TEST') await member.ban(`Moderator: ${msg.author.username}#${msg.author.discriminator} | Reason: ${reason || 'No reason was given'}`)
+      if (reason !== 'DEV_TEST') await member.ban(0, `Moderator: ${msg.author.username}#${msg.author.discriminator} | Reason: ${reason || 'No reason was given'}`)
       await this.client.emit('moderationLog', submitCase, 'Member Banned', member, msg.author, new Date(), reason || 'No reason was given')
       return msg.embed(`Successfully Banned: \`${member.user.username}#${member.user.discriminator}\` | **Tailosive Moderation**`, 0xDB411B)
     }

@@ -11,7 +11,7 @@ class GuildMemberUpdateListener extends Event {
 
   async run (guild, member, oldMember) {
     if (guild.id !== this.client.config.main_guild) return
-    if (oldMember.nickname !== member.nickname) {
+    if (oldMember.nick !== member.nick) {
       const audit = await this.client.functions.fetchLastAudit(guild, 'MEMBER_UPDATE')
       if (!audit || audit.actionType !== 'MEMBER_UPDATE') return
       let reason = 'No reason given'
@@ -27,8 +27,8 @@ class GuildMemberUpdateListener extends Event {
         if (audit.changes[change].key === 'nick') finish = true
       }
       if (!finish) return
-      const oldNickname = oldMember.nickname || oldMember.user.username
-      const newNickname = member.nickname || member.user.username
+      const oldNickname = oldMember.nick || oldMember.user.username
+      const newNickname = member.nick || member.user.username
       if (!oldNickname || !oldNickname) return
       const embed = this.client.embed()
         .title('**Nickname Changed**')
@@ -44,7 +44,7 @@ class GuildMemberUpdateListener extends Event {
       return this.client.createMessage(this.client.config.channels.member_channel, { embed: embed })
     } else if (oldMember.roles.length !== member.roles.length) {
       if (oldMember.roles.size > member.roles.size) {
-        const dif = await oldMember.roles.filter(r => !member.roles.includes(r.id)).first()
+        const dif = await oldMember.roles.filter(r => !member.roles.includes(r.id))[0]
         if (!dif) return
         if (this.client.config.roles.donator_roles.includes(dif.id)) {
           await member.roles.forEach(async role => {
@@ -53,7 +53,7 @@ class GuildMemberUpdateListener extends Event {
           })
         }
       } else if (oldMember.roles.length < member.roles.length) {
-        const dif = member.roles.filter(r => !oldMember.roles.includes(r.id)).first()
+        const dif = member.roles.filter(r => !oldMember.roles.includes(r.id))[0]
         if (!dif) return
         if (this.client.config.roles.donator_roles.includes(dif.id)) {
           await member.addRole(this.client.config.roles.donator_role)
