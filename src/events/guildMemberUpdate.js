@@ -38,7 +38,7 @@ class GuildMemberUpdateListener extends Event {
       if (reason && reason !== 'No reason given') embed.field('Reason', reason)
       return this.client.createMessage(this.client.config.channels.nickname_channel, { embed: embed })
     } else if (oldMember.roles.length !== member.roles.length) {
-      if (oldMember.roles.size > member.roles.size) {
+      if (oldMember.roles.length > member.roles.length) {
         const dif = await oldMember.roles.filter(r => !member.roles.includes(r.id))[0]
         if (!dif) return
         if (this.client.config.roles.donator_roles.includes(dif.id)) {
