@@ -22,8 +22,8 @@ class Kick extends Command {
     msg.delete('Tailosive Moderation')
     const member = args[0] && this.client.functions.getUserFromMention(args[0]) ? msg.guild.members.get(this.client.functions.getUserFromMention(args[0]).id) : undefined
     const reason = args ? this.reason(args) : undefined
-    if (!member) return msg.embed(`${msg.author.mention}, Please give me a member to warn.`)
-    if (!reason) return msg.embed(`${msg.author.mention}, Please give me a reason for the warning.`)
+    if (!member) return msg.embed(`${msg.author.mention}, Please give me a member to kick.`)
+    if (!reason) return msg.embed(`${msg.author.mention}, Please give me a reason for the kick.`)
     else if (member.id === msg.member.id) return msg.embed(`${msg.author.mention}, You can't kick yourself.`)
     else if (member.roles.includes(this.client.config.mod_role)) return msg.embed(`${msg.author.mention}, Unable to kick a moderator.`)
     else {

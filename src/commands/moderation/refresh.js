@@ -15,9 +15,9 @@ class Refresh extends Command {
 
   async run (msg, args) {
     const intergrations = await this.client.getGuildIntegrations(msg.guild.id)
-    await intergrations.forEach(async integration => {
-      await integration.sync().catch(error => console.log(error))
-    })
+    for await (const integration of intergrations) {
+      await integration.sync().catch(console.error)
+    }
     return msg.embed('Refreshing intergration...')
   }
 }

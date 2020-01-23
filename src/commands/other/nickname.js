@@ -13,7 +13,7 @@ class Nickname extends Command {
     if (!this.client.functions.moderator(msg) && !process.env.NODE_ENV !== 'development') return msg.embed(`${msg.author.mention}, Can't set moderator nickname.`)
     if (!args || args.join(' ').length < 1) return msg.embed(`${msg.author.mention}, A nickname is required to process the request.`)
     if (args.join(' ').toLowerCase() === 'reset') {
-      await this.client.editNickname(msg.guild.id, msg.author.username, 'Nickname Reset')
+      await msg.member.edit({ nick: msg.author.username }, 'Nickname Reset')
       const embed = this.client.embed()
         .title('**Nickname Reset**')
         .field('Member', `${msg.author.mention} \`${msg.author.username}#${msg.author.discriminator}\``, true)
