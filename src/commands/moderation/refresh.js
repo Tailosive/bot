@@ -10,7 +10,7 @@ class Refresh extends Command {
   }
 
   userPermissions (msg) {
-    return this.client.functions.moderator()
+    return this.client.functions.moderator(msg)
   }
 
   async run (msg, args) {
