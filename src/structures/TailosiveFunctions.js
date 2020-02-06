@@ -42,6 +42,34 @@ class TailosiveFunctions {
     }
   }
 
+  async ban (duration, guildID, caseID, userID) {
+    schedule.scheduleJob(duration, async (time) => {
+      const guild = await this.client.guilds.get(guildID)
+      guild.unbanMember(userID, 'Automatic Unban')
+      const user = await this.client.getRESTUser(userID)
+      await this.client.cases.edit(guildID, caseID, 'Automatic Unban', 'inactive', true)
+      return this.client.emit('moderationLog', caseID, 'Member Unbanned', { guild, user: user || null }, this.client.user, new Date(), 'Automatic Unban')
+    })
+  }
+
+  async startBans () {
+    let cases = await this.client.cases.get(this.client.config.main_guild)
+    if (!cases || cases.length <= 0) return
+    cases = await cases.filter(c => c.type === 'ban' && c.status === 'active' && c.duration)
+    if (!cases || cases.length <= 0) return
+    for (const ban of cases) {
+      if (ban && new Date(ban.duration).getTime() < Date.now()) {
+        const guild = await this.client.guilds.get(this.client.config.main_guild)
+        guild.unbanMember(ban.userID, 'Automatic Unban')
+        const user = await this.client.getRESTUser(ban.userID)
+        await this.client.cases.edit(this.client.config.main_guild, ban.caseID, 'Automatic Unban', 'inactive', true)
+        await this.client.emit('moderationLog', ban.caseID, 'Member Unbanned', { guild, user: user || null }, this.client.user, new Date(), 'Automatic Unban')
+        return
+      } else if (ban) this.mute(ban.duration, this.client.config.main_guild, ban.caseID, ban.userID)
+      continue
+    }
+  }
+
   async mute (duration, guildID, caseID, userID) {
     schedule.scheduleJob(duration, async (time) => {
       const guild = await this.client.guilds.get(guildID)

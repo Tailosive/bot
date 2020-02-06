@@ -20,6 +20,7 @@ const eris = new Client(process.env.TOKEN, {
     RELATIONSHIP_ADD: true,
     RELATIONSHIP_REMOVE: true
   },
+  restMode: true,
   messageLimit: 5
 })
 

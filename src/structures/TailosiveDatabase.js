@@ -80,7 +80,7 @@ class CasesDatabase {
 
   async edit (guildID, caseNum, reason, status = 'active', newReason = false) {
     if (!newReason) {
-      const updateCase = await this.cases.findOneAndUpdate({
+      const updateCase = await this.cases.updateOne({
         guildID: guildID,
         caseID: caseNum
       }, {
@@ -89,7 +89,7 @@ class CasesDatabase {
       })
       if (!updateCase) return undefined
     } else {
-      const updateCase = await this.cases.findOneAndUpdate({
+      const updateCase = await this.cases.updateOne({
         guildID: guildID,
         caseID: caseNum
       }, {
@@ -102,7 +102,7 @@ class CasesDatabase {
   }
 
   async delete (guildID, caseNum) {
-    const commitDB = await this.cases.findOneAndDelete({
+    const commitDB = await this.cases.deleteOne({
       guildID: guildID,
       caseID: caseNum
     })
@@ -139,7 +139,7 @@ class NicknameDatabase {
 
   async delete (guildID, msgID) {
     if (!guildID || !msgID) return undefined
-    const commitDB = await this.nicknames.findOneAndDelete({
+    const commitDB = await this.nicknames.deleteOne({
       guildID: guildID,
       msgID: msgID
     })
@@ -173,7 +173,7 @@ class ModDatabase {
 
   async remove (guildID, userID) {
     if (!guildID || !userID) return undefined
-    const commitDB = await this.mods.findOneAndDelete({
+    const commitDB = await this.mods.deleteOne({
       guildID: guildID,
       moderatorID: userID
     })

@@ -11,7 +11,7 @@ class ModerationLogListener extends Event {
     if (!member || !member.guild || !action || !moderator) return
     if (member.guild.id !== this.client.config.main_guild) return
     const embed = this.client.embed()
-      .field('Member', `${member.user.mention} \`${member.user.username}#${member.user.discriminator}\``, true)
+      .field('Member', `${member.user ? member.user.mention : 'Unknown'} \`${member.user ? member.user.username : 'Unknown'}#${member.user ? member.user.discriminator : '0000'}\``, true)
       .field('Moderator', `${moderator.mention} \`${moderator.username}#${moderator.discriminator}\``, true)
       .field('Reason', reason, false)
       .timestamp(date)
@@ -28,6 +28,8 @@ class ModerationLogListener extends Event {
     } else if (action === 'Member Kicked') {
       embed.color(0xE3C053)
     } else if (action === 'Member Banned') {
+      embed.color(0xFF0000)
+    } else if (action === 'Member Unbanned') {
       embed.color(0xFF0000)
     } else if (action === 'Member Trusted' || action === 'Member Untrusted') {
       embed.color(0x99ff66)
