@@ -16,8 +16,8 @@ class GuildBanAddListener extends Event {
     const target = audit.target
     const member = audit.member
     if (audit.reason) reason = audit.reason
-    if (member.id) moderator = `<@${member.id}>`
-    if (member.id === this.client.user.id) return
+    if (member && member.id) moderator = `<@${member.id}>`
+    if (member && member.id === this.client.user.id) return
     if (target.id !== user.id) return
     const embed = this.client.embed()
       .title('**Member Banned**')
