@@ -43,7 +43,6 @@ class Rules extends Command {
         .description('To get access to the rest of the server, you must run `!serveropen8206` in the <#702812601540935731> channel. Before you do, however, please make sure you have fully read over and understood the rules.')
       await msg.channel.createMessage({ embed: embed6 })
       const embed7 = this.client.embed()
-        .title('**Access**')
         .color(await msg.color())
         .description('**PLEASE NOTE:** Moderators do reserve the right to punish for things not listed on this list under the moderator\'s discretion. Please use common sense and, if you are unsure about anything, please ask before you take action.')
       await msg.channel.createMessage({ embed: embed7 })
