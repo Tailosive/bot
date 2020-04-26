@@ -13,9 +13,7 @@ class Rules extends Command {
 
   async run (msg) {
     try {
-      await msg.addReaction('✅')
       await msg.channel.purge(-1)
-      await msg.member.removeRole(this.client.config.channels.entry_role, 'Entry System')
       const embed = this.client.embed()
         .image('https://media.discordapp.net/attachments/702563699398803536/702812573476585472/TailosiveBanner.jpg')
         .color(await msg.color())
@@ -69,7 +67,7 @@ class Rules extends Command {
         .description('React :bell: to this message for notifications about Tailosive Videos and Streams. To stop, just unreact.')
       return msg.channel.createMessage({ embed: embed10 })
     } catch (error) {
-      return msg.embed(`Unable to verify you! Please contact **\\_Adam\\_#2917!**\n**Error:** ${error}`)
+      return msg.embed(`Unable to send rules! Please contact **\\_Adam\\_#2917!**\n**Error:** ${error}`)
     }
   }
 }
