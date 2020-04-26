@@ -11,7 +11,17 @@ class MessageCreateListener extends Event {
 
   async run (msg) {
     if (!msg.author || msg.author.id === this.client.user.id || msg.author.bot) return
-    if (msg.content !== '!serveropen8206' && msg.channel.id === '702261737159655535') return msg.delete()
+    if (msg.content !== '!serveropen8206' && msg.channel.id === '702261737159655535') {
+      const embed = this.client.embed()
+        .title('**Entry Failed**')
+        .field('Member', `${msg.author.mention} \`${msg.author.username}#${msg.author.discriminator}\``, false)
+        .field('Content', msg.content)
+        .timestamp(new Date())
+        .color(0xFF0000)
+        .footer(await msg.text(), await msg.logo())
+      await this.client.createMessage(this.client.config.channels.entry_channel, { embed: embed })
+      return msg.delete()
+    }
   }
 
   escapeRegex (text) {
