@@ -12,7 +12,7 @@ class ServerOpen8206 extends Command {
       if (msg.channel.id !== '702261737159655535') return
       await msg.addReaction('✅')
       await msg.channel.purge(-1)
-      await msg.member.removeRole(this.client.config.channels.entry_role, 'Entry System')
+      await msg.member.removeRole(this.client.config.channels.entry_role)
       const embed = this.client.embed()
         .title('**New Entry**')
         .field('Member', `${msg.author.mention} \`${msg.author.username}#${msg.author.discriminator}\``, true)
@@ -21,7 +21,7 @@ class ServerOpen8206 extends Command {
         .footer(await msg.text(), await msg.logo())
       return this.client.createMessage(this.client.config.channels.entry_channel, { embed: embed })
     } catch (error) {
-      return msg.embed(`Unable to verify you! Please contact **\\_Adam\\_#2917!**\n**Error:** ${error}`)
+      return msg.embed(`Unable to verify you! Please contact **\\_Adam\\_#2917!**\n\n**Error:**\n\`\`\`${error}\`\`\``)
     }
   }
 }

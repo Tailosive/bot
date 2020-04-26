@@ -14,8 +14,8 @@ class MessageCreateListener extends Event {
     if (msg.content !== '!serveropen8206' && msg.channel.id === '702261737159655535') {
       const embed = this.client.embed()
         .title('**Entry Failed**')
-        .field('Member', `${msg.author.mention} \`${msg.author.username}#${msg.author.discriminator}\``, false)
-        .field('Content', msg.content)
+        .field('**Member**', `${msg.author.mention} \`${msg.author.username}#${msg.author.discriminator}\``, false)
+        .field('**Content**', `\`\`\`${msg.content}\`\`\``)
         .timestamp(new Date())
         .color(0xFF0000)
         .footer(this.client.config.embed.text, this.client.config.embed.icon)
