@@ -40,7 +40,7 @@ class Rules extends Command {
       const embed6 = this.client.embed()
         .title('**Access**')
         .color(await msg.color())
-        .description('To get access to the rest of the server, you must run `!serveropen8206` in the <#702812601540935731> channel. Before you do, however, please make sure you have fully read over and understood the rules.')
+        .description('To get access to the rest of the server, you must run `!serveropen8206` in the <#702261737159655535> channel. Before you do, however, please make sure you have fully read over and understood the rules.')
       await msg.channel.createMessage({ embed: embed6 })
       const embed7 = this.client.embed()
         .color(await msg.color())
