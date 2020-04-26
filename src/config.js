@@ -3,6 +3,7 @@ const config = {
   owner: '392347814413467655',
   main_guild: '482026415219408907',
   roles: {
+    entry_role: '702254672857268344',
     mod_role: '485695273482452996',
     mute_role: '486046837762031626',
     trusted_role: '625156977412014090',
@@ -16,7 +17,8 @@ const config = {
     member_channel: '583032850505269268',
     nickname_channel: '644989565287006228',
     bot_channel: '548956714217766912',
-    notification_channel: '501504168754675745'
+    notification_channel: '501504168754675745',
+    entry_channel: '702941338445807636'
   },
   embed: {
     icon: 'https://file.coffee/gp_6uQZnC.png',
