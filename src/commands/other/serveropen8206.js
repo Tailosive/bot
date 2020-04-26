@@ -12,7 +12,7 @@ class ServerOpen8206 extends Command {
       if (msg.channel.id !== '702261737159655535') return
       await msg.addReaction('✅')
       await msg.channel.purge(-1)
-      await msg.member.removeRole(this.client.config.channels.entry_role)
+      await msg.member.removeRole(this.client.config.roles.entry_role)
       const embed = this.client.embed()
         .title('**New Entry**')
         .field('Member', `${msg.author.mention} \`${msg.author.username}#${msg.author.discriminator}\``, true)
