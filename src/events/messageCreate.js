@@ -18,7 +18,7 @@ class MessageCreateListener extends Event {
         .field('Content', msg.content)
         .timestamp(new Date())
         .color(0xFF0000)
-        .footer(await msg.text(), await msg.logo())
+        .footer(this.client.config.embed.text, this.client.config.embed.icon)
       await this.client.createMessage(this.client.config.channels.entry_channel, { embed: embed })
       return msg.delete()
     }
