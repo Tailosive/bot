@@ -7,12 +7,9 @@ class ServerOpen8206 extends Command {
     })
   }
 
-  userPermissions (msg) {
-    return this.client.functions.moderator(msg)
-  }
-
   async run (msg) {
     try {
+      if (msg.channel.id !== '702261737159655535') return
       await msg.addReaction('✅')
       await msg.channel.purge(-1)
       await msg.member.removeRole(this.client.config.channels.entry_role, 'Entry System')
