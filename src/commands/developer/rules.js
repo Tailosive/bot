@@ -15,7 +15,7 @@ class Rules extends Command {
     try {
       await msg.channel.purge(-1)
       const embed = this.client.embed()
-        .image('https://media.discordapp.net/attachments/702563699398803536/702812573476585472/TailosiveBanner.jpg')
+        .image('https://file.coffee/u/OccPTQwMy.jpeg')
         .color(await msg.color())
       await msg.channel.createMessage({ embed: embed })
       const embed2 = this.client.embed()
