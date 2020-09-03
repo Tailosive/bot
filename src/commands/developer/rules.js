@@ -44,7 +44,7 @@ class Rules extends Command {
       await msg.channel.createMessage({ embed: embed6 })
       const embed7 = this.client.embed()
         .color(await msg.color())
-        .description('**PLEASE NOTE:** Moderators do reserve the right to punish for things not listed on this list under the moderator\'s discretion. Please use common sense and, if you are unsure about anything, please ask before you take action.')
+        .description('**PLEASE NOTE:** Moderators do reserve the right to punish for things not listed on this list under the moderator\'s discretion. Please use common sense and, if you are unsure about anything, please ask before you take action. If you know someone who was banned, you can send them the [Ban Appeal Form](https://forms.gle/cWFziNfAThTj1BnYA)')
       await msg.channel.createMessage({ embed: embed7 })
       const embed8 = this.client.embed()
         .title('**Roles**')
