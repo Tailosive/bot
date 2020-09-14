@@ -36,27 +36,35 @@ class ModerationLogListener extends Event {
       case 'Member Warned':
         embed.color(0xFFD230)
         publicEmbed.color(0xFFD230)
+        break
       case 'Member Muted':
         embed.color(0xf45f42)
         publicEmbed.color(0xf45f42)
+        break
       case 'Member Unmuted':
         embed.color(0x41f4e8)
         publicEmbed.color(0x41f4e8)
+        break
       case 'Member Kicked':
         embed.color(0xE3C053)
         publicEmbed.color(0xE3C053)
+        break
       case 'Member Banned':
         embed.color(0xFF0000)
         publicEmbed.color(0xFF0000)
+        break
       case 'Member Unbanned':
         embed.color(0xFF0000)
         publicEmbed.color(0xFF0000)
+        break
       case 'Member Trusted':
         embed.color(0x99ff66)
         publicEmbed.color(0x99ff66)
+        break
       case 'Member Untrusted':
         embed.color(0x99ff66)
         publicEmbed.color(0x99ff66)
+        break
     }
     await this.client.createMessage(this.client.config.channels.public_channel, { embed: publicEmbed })
     return this.client.createMessage(this.client.config.channels.log_channel, { embed: embed })
