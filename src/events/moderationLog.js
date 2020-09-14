@@ -7,7 +7,7 @@ class ModerationLogListener extends Event {
     })
   }
 
-  run (caseNum, action, member, moderator, date, reason, duration) {
+  async run (caseNum, action, member, moderator, date, reason, duration) {
     if (!member || !member.guild || !action || !moderator) return
     if (member.guild.id !== this.client.config.main_guild) return
     const embed = this.client.embed()
