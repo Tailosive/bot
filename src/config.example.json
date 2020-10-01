@@ -1,0 +1,30 @@
+{
+  "prefix": "",
+  "owner": "",
+  "main_guild": "",
+  "roles": {
+    "entry_role": "",
+    "mod_role": "",
+    "mute_role": "",
+    "trusted_role": "",
+    "donator_role": "",
+    "donator_roles": []
+  },
+  "channels": {
+    "public_channel": "",
+    "log_channel": "",
+    "message_channel": "",
+    "member_channel": "",
+    "nickname_channel": "",
+    "bot_channel": "",
+    "notification_channel": "",
+    "entry_channel": ""
+  },
+  "embed": {
+    "icon": "",
+    "text": "",
+    "color": ""
+  },
+  "url": "",
+  "callbackURL": ""
+}
