@@ -1,7 +1,12 @@
+node_modules/
 .DS_Store
 .env
-node_modules/
+package-lock.json
 yarn.lock
-migrate.js
-migrate.json
-dev.config.js
+bin/
+.vscode/
+logs/
+.idea/
+src/config.json
+old.config.json
+docker-compose.yml
