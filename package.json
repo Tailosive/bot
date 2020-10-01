@@ -1,6 +1,6 @@
 {
   "name": "tailosive-bot",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "The Tailosive Discord moderation bot",
   "main": "bin/tailosive.js",
   "license": "MIT",
