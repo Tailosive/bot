@@ -24,11 +24,11 @@ class UserUpdateListener extends Event {
         .setTitle('**Username Changed**')
         .addField(
           'Member',
-          `${user.mention} \`${user.username}#${user.discriminator}\``,
+          `${user.mention} \`${user?.username || ''}#${user.discriminator}\``,
           false
         )
-        .addField('Before', `\`${oldUser.username}\``, true)
-        .addField('After', `\`${user.username}\``, true)
+        .addField('Before', `\`${oldUser?.username || ''}\``, true)
+        .addField('After', `\`${user?.username || ''}\``, true)
         .setTimestamp(new Date())
         .setThumbnail(user.avatarURL || user.defaultAvatarURL)
         .setColor(0xff00ff)
@@ -45,7 +45,7 @@ class UserUpdateListener extends Event {
         .setTitle('**Avatar Changed**')
         .addField(
           'Member',
-          `${user.mention} \`${user.username}#${user.discriminator}\``,
+          `${user?.mention} \`${user?.username}#${user?.discriminator}\``,
           false
         )
         .addField(
