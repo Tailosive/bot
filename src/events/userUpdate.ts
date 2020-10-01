@@ -19,7 +19,7 @@ class UserUpdateListener extends Event {
       avatar?: string
     }
   ) {
-    if (user.username !== oldUser.username) {
+    if ((user?.username || '') !== (oldUser?.username || '')) {
       const embed = new Embed()
         .setTitle('**Username Changed**')
         .addField(
@@ -40,7 +40,7 @@ class UserUpdateListener extends Event {
         this.client.config.channels.nickname_channel,
         { embed: embed }
       )
-    } else if (user.avatar !== oldUser.avatar) {
+    } else if ((user?.avatar || '') !== (oldUser?.avatar || '')) {
       const embed = new Embed()
         .setTitle('**Avatar Changed**')
         .addField(

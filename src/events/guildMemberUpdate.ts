@@ -13,7 +13,7 @@ class GuildMemberUpdateListener extends Event {
 
   async run(guild: Guild, member: Member, oldMember: Member) {
     if (guild.id !== this.client.config.main_guild) return
-    if (oldMember.nick !== member.nick) {
+    if ((oldMember?.nick || '') !== (member?.nick || '')) {
       const audit = await this.client.functions.fetchLastAudit(guild, 24)
       if (!audit || audit.actionType !== 24) return
       let reason = 'No reason given'
@@ -51,7 +51,9 @@ class GuildMemberUpdateListener extends Event {
         this.client.config.channels.nickname_channel,
         { embed: embed }
       )
-    } else if (oldMember.roles.length !== member.roles.length) {
+    } else if (
+      (oldMember?.roles?.length || 0) !== (member?.roles?.length || 0)
+    ) {
       if (oldMember.roles.length > member.roles.length) {
         const dif = await oldMember.roles.filter(
           (r) => !member.roles.includes(r)
