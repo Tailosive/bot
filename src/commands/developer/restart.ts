@@ -6,12 +6,12 @@ class Restart extends Command {
 
   constructor(client: TailosiveClient) {
     super(client, {
-      name: 'restart'
+      name: 'restart',
+      ownerOnly: true
     })
   }
 
   async run(context: CommandContext) {
-    if (context.message.author.id !== '392347814413467655') return
     await context.message.channel.createMessage({
       embed: { description: 'Restarting...' }
     })

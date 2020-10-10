@@ -27,6 +27,7 @@ export interface Config {
     bot_channel: string
     notification_channel: string
     entry_channel: string
+    entry_log_channel: string
   }
   embed: {
     icon: string

@@ -16,7 +16,8 @@ class ServerOpen8206 extends Command {
   async run(context: CommandContext) {
     try {
       if (
-        context.message.channel.id !== '702261737159655535' ||
+        context.message.channel.id !==
+          this.client.config.channels.entry_channel ||
         context.message.channel.type !== 0
       )
         return
@@ -36,7 +37,7 @@ class ServerOpen8206 extends Command {
         .setColor(this.client.config.embed.color)
         .setFooter(this.client.config.embed.text, this.client.config.embed.icon)
       return this.client.createMessage(
-        this.client.config.channels.entry_channel,
+        this.client.config.channels.entry_log_channel,
         { embed: embed }
       )
     } catch (error) {
