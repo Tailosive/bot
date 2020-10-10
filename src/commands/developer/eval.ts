@@ -20,7 +20,6 @@ class Eval extends Command {
   }
 
   async run(context: CommandContext) {
-    if (context.message.author.id !== '392347814413467655') return
     try {
       const code = context.arguments.join(' ')
       let evaled = await eval(code)

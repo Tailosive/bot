@@ -18,6 +18,7 @@
     "nickname_channel": "",
     "bot_channel": "",
     "notification_channel": "",
+    "entry_log_channel": "",
     "entry_channel": ""
   },
   "embed": {

@@ -6,12 +6,12 @@ class Update extends Command {
 
   constructor(client: TailosiveClient) {
     super(client, {
-      name: 'update'
+      name: 'update',
+      ownerOnly: true
     })
   }
 
   async run(context: CommandContext) {
-    if (context.message.author.id !== '392347814413467655') return
     const members = await context.message.member.guild.members.filter(
       (member) => member.roles.includes(this.client.config.roles.donator_role)
     )

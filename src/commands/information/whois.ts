@@ -79,13 +79,7 @@ class Warn extends Command {
     let description = member.user.mention
     if (r) whoisEmbed.addField('Roles', r)
     if (member.user.id === '392347814413467655')
-      description = 'Dead Deer. Hahahahahahahahahaha' // Adam
-    if (member.user.id === '231534805102231552')
-      description = '#1 Tailosive Food Fan' // Michael
-    if (member.user.id === '346615886603354112')
-      description = "I don't know or care" // eslint-disable-line
-    if (member.user.id === '198638530371518475')
-      description = 'Long time listener, first time caller' // Sam
+      description = 'Tailosive Developer'
     whoisEmbed.setDescription(description)
 
     if (member.clientStatus.desktop)
