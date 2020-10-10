@@ -9,6 +9,11 @@
     "build": "tsc",
     "dev": "ts-node src/tailosive"
   },
+  "author": {
+    "name": "A-da-m",
+    "email": "adam@atiktech.co"
+  },
+  "repository": "https://github.com/Tailosive/bot.git",
   "dependencies": {
     "@points.city/quartz": "https://github.com/pointscity/quartz.git#2.1.0-dev",
     "chalk": "^4.1.0",
