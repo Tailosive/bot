@@ -18,6 +18,7 @@ class MessageUpdateListener extends Event {
       msg.channel.type !== 0
     )
       return
+    if (!oldMsg.content) return
     if (oldMsg.content.startsWith('!')) return
     if (oldMsg.content.length > 1000 || msg.content.length > 1000) return
     const embed = new Embed()
