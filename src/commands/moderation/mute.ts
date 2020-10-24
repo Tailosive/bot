@@ -120,8 +120,7 @@ class Mute extends Command {
         if (displayMute > 60) {
           displayMute = moment.duration(ms(durationString)).asHours()
           displayMute = `${displayMute} hours`
-        }
-        if (displayMute < 1) {
+        } else if (displayMute < 1) {
           displayMute = moment.duration(ms(durationString)).asSeconds()
           displayMute = `${displayMute} sec`
         } else {
