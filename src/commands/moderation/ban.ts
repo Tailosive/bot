@@ -105,8 +105,7 @@ class Ban extends Command {
         if (displayBan > 60) {
           displayBan = moment.duration(ms(durationString)).asHours()
           displayBan = `${displayBan} hours`
-        }
-        if (displayBan < 1) {
+        } else if (displayBan < 1) {
           displayBan = moment.duration(ms(durationString)).asSeconds()
           displayBan = `${displayBan} sec`
         } else displayBan = `${displayBan} min`
