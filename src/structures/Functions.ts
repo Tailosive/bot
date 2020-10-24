@@ -148,7 +148,7 @@ class Functions {
         const guild = await this.client.guilds.get(
           this.client.config.main_guild
         )
-        const member = await guild.members.get(mute.userID)
+        const member = await guild?.members?.get(mute.userID)
         if (!member) return
         if (member.roles.includes(this.client.config.roles.mute_role))
           member.removeRole(this.client.config.roles.mute_role)
