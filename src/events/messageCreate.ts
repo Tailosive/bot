@@ -30,7 +30,7 @@ class MessageCreateListener extends Event {
         .setColor(0xff0000)
         .setFooter(this.client.config.embed.text, this.client.config.embed.icon)
       await this.client.createMessage(
-        this.client.config.channels.entry_channel,
+        this.client.config.channels.entry_log_channel,
         { embed: embed }
       )
       return msg.delete()
