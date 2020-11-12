@@ -16,6 +16,7 @@ class Revoke extends Command {
   }
 
   async run(context: CommandContext) {
+    if (context.message.channel.type !== 0) return
     if (!context.arguments[0] || isNaN(Number(context.arguments[0])))
       return context.message.channel.createMessage({
         embed: {

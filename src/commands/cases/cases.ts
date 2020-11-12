@@ -20,14 +20,15 @@ class CaseCommand extends Command {
   }
 
   async run(context: CommandContext) {
+    if (context.message.channel.type !== 0) return
     try {
       const member =
-        context.arguments[0] &&
-        this.client.functions.getUserFromMention(context.arguments[0])
-          ? context.message.member.guild.members.get(
-              this.client.functions.getUserFromMention(context.arguments[0]).id
-            )
-          : undefined
+        (context.arguments[0] &&
+          (await this.client.utils.resolveMember(
+            context.message.channel.guild,
+            context.arguments[0]
+          ))) ||
+        undefined
       if (!member) {
         const cases = await this.client.cases.get(context.message.guildID)
         if (!cases || !Array.isArray(cases) || cases.length <= 0) {

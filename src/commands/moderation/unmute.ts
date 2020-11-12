@@ -38,20 +38,25 @@ class Unmute extends Command {
 
   async run(context: CommandContext) {
     await context.message.delete('Tailosive Moderation')
+    if (context.message.channel.type !== 0) return
+    if (!context.arguments[0])
+      return context.message.channel.createMessage({
+        embed: {
+          description: `${context.message.author.mention}, Please give me a member to unmute.`
+        }
+      })
     const member =
-      context.arguments[0] &&
-      this.client.functions.getUserFromMention(context.arguments[0])
-        ? context.message.member.guild.members.get(
-            this.client.functions.getUserFromMention(context.arguments[0]).id
-          )
-        : undefined
+      (await this.client.utils.resolveMember(
+        context.message.channel.guild,
+        context.arguments[0]
+      )) || undefined
     const reason = context.arguments
       ? this.reason(context.arguments)
       : undefined
     if (!member)
       return context.message.channel.createMessage({
         embed: {
-          description: `${context.message.author.mention}, Please give me a member to unmute.`
+          description: `${context.message.author.mention}, Please give me a vaild member to unmute. This could also mean the member isn't cached or couldn't be fetched from the Discord API.`
         }
       })
     if (!reason)
@@ -91,9 +96,11 @@ class Unmute extends Command {
         }
       })
     else {
-      const caseMember = await context.message.member.guild.members.get(
-        getCase.userID
-      )
+      const caseMember =
+        (await this.client.utils.resolveMember(
+          context.message.channel.guild,
+          getCase.userID
+        )) || undefined
       if (!caseMember)
         return context.message.channel.createMessage({
           embed: {

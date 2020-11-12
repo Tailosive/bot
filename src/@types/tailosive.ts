@@ -5,6 +5,7 @@ import {
   NicknameDatabase
 } from '../structures/Database'
 import Functions from '../structures/Functions'
+import Utils from '../utils'
 
 export interface Config {
   prefix: string
@@ -45,4 +46,5 @@ export interface TailosiveClient extends Client {
   cases?: CasesDatabase
   nicknames?: NicknameDatabase
   mods?: ModDatabase
+  utils?: Utils
 }

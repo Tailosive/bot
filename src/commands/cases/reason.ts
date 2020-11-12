@@ -21,6 +21,7 @@ class Reason extends Command {
   }
 
   async run(context: CommandContext) {
+    if (context.message.channel.type !== 0) return
     await context.message.delete()
     const reason = context.arguments
       ? this.reason(context.arguments)
