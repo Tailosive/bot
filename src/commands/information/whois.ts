@@ -21,13 +21,14 @@ class Warn extends Command {
   }
 
   async run(context: CommandContext) {
+    if (context.message.channel.type !== 0) return
     const member =
-      context.arguments[0] &&
-      this.client.functions.getUserFromMention(context.arguments[0])
-        ? context.message.member.guild.members.get(
-            this.client.functions.getUserFromMention(context.arguments[0]).id
-          )
-        : context.message.member
+      (context.arguments[0] &&
+        (await this.client.utils.resolveMember(
+          context.message.channel.guild,
+          context.arguments[0]
+        ))) ||
+      context.message.member
     const joinDiscord = moment(member.user.createdAt).format('lll')
     const joinServer = moment(member.joinedAt).format('lll')
     const r = member.roles

@@ -20,14 +20,15 @@ class Mutes extends Command {
   }
 
   async run(context: CommandContext) {
+    if (context.message.channel.type !== 0) return
     try {
       const member =
-        context.arguments[0] &&
-        this.client.functions.getUserFromMention(context.arguments[0])
-          ? context.message.member.guild.members.get(
-              this.client.functions.getUserFromMention(context.arguments[0]).id
-            )
-          : undefined
+        (context.arguments[0] &&
+          (await this.client.utils.resolveMember(
+            context.message.channel.guild,
+            context.arguments[0]
+          ))) ||
+        undefined
       if (!member) {
         let mutes = await this.client.cases.get(context.message.guildID)
         if (!Array.isArray(mutes))
@@ -100,7 +101,7 @@ class Mutes extends Command {
         mutes.sort((a, b) => +b.caseID - +a.caseID)
         mutes.length = 19
         const embed = new Embed()
-          .setTitle('**Warnings**')
+          .setTitle('**Mutes**')
           .setDescription(`${member.user.mention}`)
           .setColor(this.client.config.embed.color)
           .setFooter(
@@ -114,7 +115,7 @@ class Mutes extends Command {
             if (mod)
               embed.addField(
                 `Case #${c.caseID}`,
-                `**Reason:** \`${c.reason}\`\n**Moderator:** ${mod.mention} (\`${mod.username}#${mod.discriminator}\`)`,
+                `**Status:** \`${c.status}\`\n**Reason:** \`${c.reason}\`\n**Moderator:** ${mod.mention} (\`${mod.username}#${mod.discriminator}\`)`,
                 false
               )
           }

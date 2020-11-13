@@ -20,6 +20,7 @@ class Case extends Command {
   }
 
   async run(context: CommandContext) {
+    if (context.message.channel.type !== 0) return
     if (!context.arguments[0] || isNaN(Number(context.arguments[0])))
       return context.message.channel.createMessage({
         embed: {
@@ -40,12 +41,12 @@ class Case extends Command {
       .addField(
         'Moderator',
         context.message.member.guild.members.get(caseObj.moderatorID)
-          .username || caseObj.moderatorID,
+          ?.username || caseObj.moderatorID,
         true
       )
       .addField(
         'User',
-        context.message.member.guild.members.get(caseObj.userID).username ||
+        context.message.member.guild.members.get(caseObj.userID)?.username ||
           caseObj.userID,
         true
       )

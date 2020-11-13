@@ -12,6 +12,7 @@ import {
 } from './structures/Database'
 import config from './config.json'
 import { TailosiveClient } from './@types/tailosive'
+import Utils from './utils'
 
 mongoose
   .connect(
@@ -29,10 +30,16 @@ mongoose.set('useFindAndModify', false)
 const client: TailosiveClient = new Client(process.env.TOKEN, {
   owner: config.owner,
   eventHandler: {
-    directory: path.resolve('./bin/events')
+    directory:
+      process.env.NODE_ENV === 'production'
+        ? path.resolve('./bin/events')
+        : path.resolve('./src/events')
   },
   commandHandler: {
-    directory: path.resolve('./bin/commands'),
+    directory:
+      process.env.NODE_ENV === 'production'
+        ? path.resolve('./bin/commands')
+        : path.resolve('./src/commands'),
     prefix: config.prefix,
     color: config.embed.color,
     text: config.embed.text,
@@ -64,5 +71,5 @@ client.invites = new Collection(undefined as any)
 client.cases = new CasesDatabase()
 client.nicknames = new NicknameDatabase()
 client.mods = new ModDatabase()
-
+client.utils = new Utils(client)
 client.start()

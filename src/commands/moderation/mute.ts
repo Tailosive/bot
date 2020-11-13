@@ -36,13 +36,18 @@ class Mute extends Command {
 
   async run(context: CommandContext) {
     await context.message.delete('Tailosive Moderation')
+    if (context.message.channel.type !== 0) return
+    if (!context.arguments[0])
+      return context.message.channel.createMessage({
+        embed: {
+          description: `${context.message.author.mention}, Please give me a member to mute.`
+        }
+      })
     const member =
-      context.arguments[0] &&
-      this.client.functions.getUserFromMention(context.arguments[0])
-        ? context.message.member.guild.members.get(
-            this.client.functions.getUserFromMention(context.arguments[0]).id
-          )
-        : undefined
+      (await this.client.utils.resolveMember(
+        context.message.channel.guild,
+        context.arguments[0]
+      )) || undefined
     const durationString = context.arguments[1]
     const duration = context.arguments[1]
       ? this.duration(context.arguments[1])
@@ -50,7 +55,7 @@ class Mute extends Command {
     if (!member)
       return context.message.channel.createMessage({
         embed: {
-          description: `${context.message.author}, Please give me a member to mute.`
+          description: `${context.message.author.mention}, Please give me a vaild member to mute. This could also mean the member isn't cached or couldn't be fetched from the Discord API.`
         }
       })
     if (duration) context.arguments.shift()
@@ -60,7 +65,7 @@ class Mute extends Command {
     if (!reason)
       return context.message.channel.createMessage({
         embed: {
-          description: `${context.message.author}, Please give me a reason for the mute.`
+          description: `${context.message.author.mention}, Please give me a reason for the mute.`
         }
       })
     else if (
