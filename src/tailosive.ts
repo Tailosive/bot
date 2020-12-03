@@ -13,6 +13,11 @@ import {
 import config from './config.json'
 import { TailosiveClient } from './@types/tailosive'
 import Utils from './utils'
+import * as Sentry from '@sentry/node'
+
+Sentry.init({
+  dsn: process.env.SENTRY_DSN
+})
 
 mongoose
   .connect(
@@ -73,3 +78,7 @@ client.nicknames = new NicknameDatabase()
 client.mods = new ModDatabase()
 client.utils = new Utils(client)
 client.start()
+
+process.on('uncaughtException', (e) => {
+  Sentry.captureException(e)
+})
