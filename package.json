@@ -16,6 +16,8 @@
   "repository": "https://github.com/Tailosive/bot.git",
   "dependencies": {
     "@points.city/quartz": "https://github.com/pointscity/quartz.git#2.1.0-dev",
+    "@sentry/node": "^5.27.4",
+    "@sentry/tracing": "^5.27.4",
     "chalk": "^4.1.0",
     "dotenv": "^8.1.0",
     "eris": "^0.13.3",
